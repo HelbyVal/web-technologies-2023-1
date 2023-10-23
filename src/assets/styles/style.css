@@ -2,10 +2,73 @@
 @import "./fonts.css";
 @import "./utils.css";
 
-.test {
-    color: yellow !important;
+.pa {
+    font-size: 16px;
+    line-height: 26px;
+    color: #1F3F68
 }
 
-.test {
-    color: red !important;
+.tit1 {
+    font-size: 64px;
+    color: #1F3F68
+}
+
+.tit2 {
+    font-weight: 500;
+    font-size: 44px;
+    text-align: center
+}
+
+.tit3 {
+    font-size: 36px;
+    text-align: center
+}
+
+.tit4 {
+    font-size: 20px;
+    line-height: 30px;
+    color: #1F3F68
+}
+
+.areaInput{
+    border: 1px solid #356EAD;
+    box-sizing: border-box;
+    border-radius: 10px;
+    opacity: 0.4
+}
+
+.button{
+    background: linear-gradient(to right, rgb(75, 116, 230), rgb(141, 85, 233));
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 42px;
+    text-align: center;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border: 0px;
+    font-weight: bold;
+    padding: 5px 30px 5px 30px;
+}
+
+.logo {
+    height: 150px;
+}
+
+.back{
+    background: url(/src/assets/img/misfdoom_white.png);
+    background-size: 350px;
+}
+
+ul.breadcrumb {
+    padding: 10px 16px;
+    background: linear-gradient(0deg, rgb(76, 140, 141), white);
+}
+
+ul.breadcrumb li {
+    display: inline;
+    box-shadow: 3px 0px 0px 0px black;
+    border-right: solid 2px white;
+    border-radius: 0 50px 50px 0;
+    padding: 10px 20px 10px 20px;
 }
