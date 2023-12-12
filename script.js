@@ -75,10 +75,10 @@ function init() {
     const items = new ListItems(document.getElementById('list-items'), data)
 
 
-    //items.render()
+    items.render()
     items.init()
 
-    console.log(this.renderParent(this.data));
+    //console.log(this.renderParent(this.data));
 
     function ListItems(el, data) {
         this.el = el;
@@ -100,37 +100,34 @@ function init() {
 
         this.renderParent = function (data) {
             let html = `
-            <div class="list-item list-item_open" data-parent>
+            <div class = "list-item list-item_open" data-parent>
                 <div class="list-item__inner">
                     <img class="list-item__arrow" src="img/chevron-down.png" alt="chevron-down" data-open>
                     <img class="list-item__folder" src="img/folder.png" alt="folder">
                 <span>${data.name}</span>
-            `
+            </div> `
             data.items.forEach(item => {
                 if (item.hasChildren) {
-                    html += `<div class="list-item__items"></div>
-                    ${item.renderParent(item)}
+                    html += `<div class="list-item__items">
+                    ${this.renderParent(item)}
                     </div>`
                 }
                 else {
-                    html += `<div class="list-item__items"></div>
-                    ${item.renderChildren(item)}
+                    html += `<div class="list-item__items">
+                    ${this.renderChildren(item)}
                     </div>`
                 }
-            });
-            
+            })
             html +=  '</div>'
             return html
 
         }
 
         this.renderChildren = function (data) {
-            return ` <div class="list-item list-item_open" data-parent>
-                        <div class="list-item__inner">
-                            <img class="list-item__arrow" src="img/chevron-down.png" alt="chevron-down" data-open>
-                            <img class="list-item__folder" src="img/folder.png" alt="folder">
-                        <span>${data.name}</span>
-                     </div> `
+            return ` 
+                    <div class="list-item__inner", style = "padding-left: 25px">
+                        <img class="list-item__folder" src="img/folder.png" alt="folder">
+                    <span>${data.name}</spa> `
         }
 
         this.toggleItems = function (parent) {
