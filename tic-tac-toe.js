@@ -34,5 +34,6 @@ function init() {
 
     restartBtn.addEventListener('click', () => {
         game.restartGame()
+        moveEl.innerText = 'X'
     })
 }
