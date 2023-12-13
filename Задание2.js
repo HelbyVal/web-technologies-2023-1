@@ -1,9 +1,8 @@
 function createCounter() {
-    let count = 1;
+    let count = 0;
     return function () {
-        mem = count;
         count++;
-        return mem;
+        return count;
     }
 }
 console.log("Задание 2:")
