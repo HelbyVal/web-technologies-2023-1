@@ -102,13 +102,14 @@ export const TicTacToe = {
    * @returns {boolean} - true если есть пустые блоки, false - если нет
    */
   checkHasEmptyBlocks() {
+    let res = false;
     this.matrix.forEach(row => {
       row.forEach(item => {
         if (item == null)
-          return false;
+          res = true;
       });
     });
-    return true;
+    return res;
   },
 
   /**
