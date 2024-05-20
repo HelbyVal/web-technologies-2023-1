@@ -100,6 +100,10 @@ export class Order {
         return this.size;
     }
 
+    changeSize(size) {
+        this.size = size;
+    }
+
     getStuffing() {
         console.log("Пицца: " + this.pizza.name);
         this.getToppings();

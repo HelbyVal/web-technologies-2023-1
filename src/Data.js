@@ -19,12 +19,75 @@ let toppChederParmesan = new Topping("Чеддер и пармезан");
 toppChederParmesan.addSize(new SizeTopping(sizeSmall,150,50));
 toppChederParmesan.addSize(new SizeTopping(sizeBig,300,100));
 
+let toppings = {
+    "addBort" : toppCheeseBort,
+    "addMozz" : toppMozzarella,
+    "addParm": toppChederParmesan
+};
 
-let order1 = new Order(pizzaMargarita, sizeBig);
-order1.addTopping(toppMozzarella);
-order1.addTopping(toppCheeseBort);
-order1.getToppings();
-order1.getSize();
-order1.getStuffing();
-console.log(order1.calculatePrice());
-console.log(order1.calculateCalorie());
+let pizzas = {
+    "margaritta": pizzaMargarita,
+    "pepperoni": pizzaPepperoni,
+    "bavarskaya": pizzaBavarskaya
+}
+
+
+let pizzaButtons = document.querySelectorAll("button.button");
+let toppingButtons = document.querySelectorAll("button.buttonTopping");
+let bigButton = document.querySelector("#sizeBig");
+let smallButton = document.querySelector("#sizeSmall");
+
+var order = null;
+
+smallButton.addEventListener("click", function(){
+    if(order == null) {
+        alert("Выберите пиццу!");
+        return;
+    }
+    order.changeSize(sizeSmall);
+    Calculate();
+});
+
+bigButton.addEventListener("click", function(){
+    if(order == null) {
+        alert("Выберите пиццу!");
+        return;
+    }
+    order.changeSize(sizeBig);
+    Calculate();
+});
+
+
+toppingButtons.forEach(button => {
+    button.onclick = function(){
+        if(order == null) {
+            alert("Выберите пиццу!");
+            return;
+        }
+        else {
+            if (order.toppings.find(item => item.name == toppings[button.id].name) == null) {
+                order.addTopping(toppings[button.id]);
+                Calculate();
+            }
+            // Чтобы убрать добавку, нужно еще раз кликнуть по кнопке
+            else {
+                order.removeTopping(toppings[button.id]);
+                Calculate();
+            }
+        }
+
+    }
+});
+
+pizzaButtons.forEach(button => {
+    button.onclick = function(){
+        order = new Order(pizzas[button.id], sizeSmall);
+        Calculate();
+    }
+});
+
+function Calculate() {
+    let ButtonOrder = document.querySelector("#order");
+    ButtonOrder.textContent = `Добавить в корзину за ${order.calculatePrice()}  руб (${order.calculateCalorie()}  кКалл)`;
+}
+
