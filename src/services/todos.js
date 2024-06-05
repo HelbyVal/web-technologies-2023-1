@@ -3,27 +3,52 @@ import api from "./api.js";
 export default class Todos {
 
     static async getAll() {
-        let response = await api("/todo");
-        return response.data;
+        try {
+            let response = await api("/todo");
+            return response.data;
+        }
+        catch (ex) {
+            console.log(ex);
+        }
     }
 
     static async getById(idTodo) {
-        const response = await api('/todo/' + idTodo, { method: 'GET' });
-        return response.data;
+        try {
+            const response = await api('/todo/' + idTodo, { method: 'GET' });
+            return response.data;
+        }
+        catch (ex) {
+            console.log(ex);
+        }
     }
     
     static async createTodo(data) {
-        let response = await api("/todo", { method: 'POST', body: JSON.stringify({ description: data }) });
-        return response;
+        try {
+            let response = await api("/todo", { method: 'POST', body: JSON.stringify({ description: data }) });
+            return response;
+        }
+        catch (ex) {
+            console.log(ex);
+        }
     }
 
     static async update(id, status) {
-        let response = await api("/todo/" + id, { method: 'PUT', body: JSON.stringify({ completed: status }) });
-        return response;
+        try {
+            let response = await api("/todo/" + id, { method: 'PUT', body: JSON.stringify({ completed: status }) });
+            return response;
+        }
+        catch (ex) {
+            console.log(ex);
+        }
     }
 
     static async delete(id) {
-        let response = await api('/todo/' + id, { method: 'DELETE' });
-        return response;
+        try {
+            let response = await api('/todo/' + id, { method: 'DELETE' });
+            return response;
+        }
+        catch (ex) {
+            console.log(ex);
+        }
     }
 }
