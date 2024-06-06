@@ -81,6 +81,10 @@ switch ($page) {
         echo json_encode($params, JSON_UNESCAPED_UNICODE);
         exit;
 
+    case 'tasks':
+        $params["title"] = "tasks";
+        break;
+
     case 'about':
         break;
 

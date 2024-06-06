@@ -92,6 +92,59 @@
 
     $word = "это задание просто имба! имбулик имбище имбосик ъьыуыъх";
 
+
+    $arrayMenu = [
+        "mainMenu" => [
+            "link" => "mainMenu",
+            "name" => "Главная Страница",
+            "childs" => [
+                "child1" => [
+                    "link" => "page1",
+                    "name" => "Страница 1",
+                    "childs" => []
+                ],
+                "child2" => [
+                    "link" => "page2",
+                    "name" => "Страница 2",
+                    "childs" => []
+                ]
+            ]
+        ]
+    ];
+
+    function generateMenu($menu) {
+        $result = "<ul>";
+        foreach ($menu as $key => $page) {
+            $result = $result . "<li>" . "<a href= https://www.google.com/search?q=" . $page["link"] . "/>" . $page["name"]. "</a>";
+            if(count($page["childs"]) != 0){
+                $result = $result . generateMenu($page["childs"]);
+            }
+            $result = $result . "</li>";
+        }
+        $result = $result . "</ul>";
+        return $result;
+    }
+
+    function checkFirstLetter($charArray, $letter) {
+        $letter = mb_strtolower($letter);
+        return $charArray[0] == $letter;
+    }
+
+    function PrintCitiesOnLetter($array, $letter) {
+        foreach ($array as $key => $value) {
+            echo "<h3>" . $key . ". Города: <br/>";
+            $i = 1;
+            foreach ($value as $city => $valueCity) {
+                if (checkFirstLetter(makeWordToArray($valueCity), $letter)) {
+                    echo $i . ". " . $valueCity . "<br/>";
+                    $i += 1;
+                }
+                continue;
+            }
+        }
+    }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -114,5 +167,14 @@
             <h2>Задача 3</h2>
             <h3>Строка: "<?= $word ?>" в "<?= MakeTranslit($word, $charArray) ?>"</h3>
         </div>
+        <div>
+            <h2>Задача 4</h2>
+            <?= generateMenu($arrayMenu) ?>
+        </div>
+        <div>
+            <h2>Задача 5 выполнена в menu.php</h2>
+            <?= PrintCitiesOnLetter($array, "К") ?>
+        </div>
+
     </body>
 </html>
