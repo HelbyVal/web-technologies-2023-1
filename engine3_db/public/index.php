@@ -92,6 +92,11 @@ switch ($page) {
         $params['photos'] = getImages();
         break;
 
+    case "catalogTask":
+        $data = getData();
+        $params["data"] = getDataTree($data);
+        break;
+
     default:
         echo "404";
         die();
