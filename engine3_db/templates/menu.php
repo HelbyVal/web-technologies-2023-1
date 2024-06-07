@@ -35,6 +35,11 @@
             "name" => "Галлерия",
             "childs" => []
         ],
+        "catalogTask" => [
+            "link" => "catalogTask",
+            "name" => "Каталог",
+            "childs" => []
+        ],
     ];
 
     function generateMenus($menu) {
