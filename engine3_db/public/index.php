@@ -42,7 +42,6 @@ switch ($page) {
 
     case 'onenews':
         $id = (int)$_GET['id'];
-
         $params['news'] = getOneNews($id);
         break;
 
@@ -88,14 +87,21 @@ switch ($page) {
     case 'about':
         break;
 
+    case 'gallery':
+        $params['title'] = "Галлерия";
+        $params['photos'] = getImages();
+        break;
+
     default:
         echo "404";
         die();
+
+
 }
 
 
 
-
+log_file("Произошел вход на страницу $page");
 echo render($page, $params, $layout);
 
 

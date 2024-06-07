@@ -4,14 +4,21 @@
 //пример в index.php
 
 
-function _log($s, $suffix = '')
+function log_file($s, $suffix = '')
 {
 
     if (is_array($s) || is_object($s)) $s = print_r($s, 1);
-    $s = "### " . date("d.m.Y H:i:s") . "\r\n" . $s . "\r\n\r\n\r\n";
+    $s = "### " . date("d.m.Y H:i:s") . "\n" . $s . "\n\r\n";
 
     if (mb_strlen($suffix))
         $suffix = "_" . $suffix;
+
+    if(_getCountFromLog() > 10 && file_exists($_SERVER['DOCUMENT_ROOT'] . "/_log/logs.log")) {
+        $suff = _getNumFile();
+        $str = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_log/logs.log");
+        _writeToFile($_SERVER['DOCUMENT_ROOT'] . "/_log/logs" . $suff . ".log", $str, "a+");
+        unlink($_SERVER['DOCUMENT_ROOT'] . "/_log/logs.log");
+    } 
 
     _writeToFile($_SERVER['DOCUMENT_ROOT'] . "/_log/logs" . $suffix . ".log", $s, "a+");
 
@@ -63,4 +70,24 @@ function _makeDir($dir, $is_root = true, $root = '')
         }
     }
     return $root;
+}
+
+function _getCountFromLog() {
+    $string = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_log/logs.log");
+    $arrayStrings = explode("\r", $string);
+    $count = 0;
+    foreach ($arrayStrings as $key => $value) {
+        if ($value != "") {
+            $count += 1;
+        }
+    }
+    return $count;
+}
+
+function _getNumFile() {
+    $i = 0;
+    while(file_exists($_SERVER['DOCUMENT_ROOT'] . "/_log/logs" . $i . ".log")) { 
+        $i += 1;
+    }
+    return $i;
 }

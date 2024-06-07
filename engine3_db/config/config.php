@@ -15,3 +15,6 @@ include ROOT . "/engine/db.php";
 include ROOT . "/engine/log.php";
 include ROOT . "/engine/news.php";
 include ROOT . "/engine/classSimpleImage.php";
+include ROOT . "/engine/Image.php";
+include ROOT . "/engine/ImageResize.php";
+include ROOT . "/engine/ImageResizeException.php";

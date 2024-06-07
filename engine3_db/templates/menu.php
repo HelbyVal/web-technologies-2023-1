@@ -30,6 +30,11 @@
             "name" => "Задания",
             "childs" => []
         ],
+        "gallery" => [
+            "link" => "gallery",
+            "name" => "Галлерия",
+            "childs" => []
+        ],
     ];
 
     function generateMenus($menu) {
